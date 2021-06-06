@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
+import { gql, useMutation } from '@apollo/client'
 import { Link, Redirect, useHistory } from 'react-router-dom'
+
+import { useAuthDispatch, useAuthState } from '../context/Auth'
+
 import InputGroup from '../components/InputGroup'
-import { useAuthState } from '../context/Auth'
 
 const Register = () => {
   const [email, setEmail] = useState('')
@@ -10,9 +13,27 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState<any>({})
 
+  const dispatch = useAuthDispatch()
   const { authenticated } = useAuthState()
 
   const history = useHistory()
+
+  const [registerUser] = useMutation(REGISTER_USER, {
+    update: (_, { data: { register: userData } }) => {
+      localStorage.setItem('token', userData.token)
+      dispatch('LOGIN', userData)
+      history.push('/')
+    },
+    onError: (err) => {
+      console.log(err.graphQLErrors[0].extensions.exception.errors)
+      setErrors(err.graphQLErrors[0].extensions.exception.errors)
+    },
+  })
+
+  const submitHandler = (event: FormEvent) => {
+    event.preventDefault()
+    registerUser({ variables: { username, email, password, confirmPassword } })
+  }
 
   if (authenticated) return <Redirect to="/" />
 
@@ -26,7 +47,7 @@ const Register = () => {
           WorkFlowy offers a simpler way to stay organized. If you have a crazy
           job or an ambitious project, we will be your trusty sidekick.
         </p>
-        <form className="px-4 mx-auto md:w-80">
+        <form className="px-4 mx-auto md:w-80" onSubmit={submitHandler}>
           <InputGroup
             className="w-full mb-3"
             placeholder="Enter your email"
@@ -79,3 +100,26 @@ const Register = () => {
 }
 
 export default Register
+
+const REGISTER_USER = gql`
+  mutation register(
+    $username: String!
+    $email: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    register(
+      registerInput: {
+        username: $username
+        email: $email
+        password: $password
+        confirmPassword: $confirmPassword
+      }
+    ) {
+      email
+      token
+      username
+      createdAt
+    }
+  }
+`
