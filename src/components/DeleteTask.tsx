@@ -28,7 +28,7 @@ export const DeleteTask: FC<DeleteTaskProp> = ({ taskId, refetch }) => {
   return (
     <>
       <TrashIcon
-        className="object-contain w-5 mx-1 opacity-0 group-hover:opacity-100"
+        className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100"
         onClick={() => setOpen(true)}
       />
       {open && (
