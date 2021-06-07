@@ -1,17 +1,20 @@
 import { gql, useMutation } from '@apollo/client'
 import { FC, FormEvent, useState } from 'react'
+import { useAuthDispatch } from '../context/Auth'
 import InputGroup from './InputGroup'
 
 interface AddTaskProp {
   setOpen: (open: boolean) => void
   refetch: () => void
   taskId?: string
-  type: 'task' | 'subTask' | 'edit'
+  type: 'task' | 'subTask'
 }
 
 const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
   const [newTask, setNewTask] = useState('')
   const [errors, setErrors] = useState('')
+  const dispatch = useAuthDispatch()
+
   const [createTask] = useMutation(CREATE_TASK, {
     update: (_, data) => {
       console.log(data)
@@ -21,7 +24,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
     },
     onError: (err) => {
       console.log(err.graphQLErrors[0].message)
-      setErrors('error while adding task')
+      setErrors(err.graphQLErrors[0].message)
     },
   })
 
@@ -34,7 +37,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
     },
     onError: (err) => {
       console.log(err)
-      setErrors('error while adding task')
+      setErrors(err.graphQLErrors[0].message)
     },
   })
 
@@ -55,6 +58,10 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
         },
       })
     }
+  }
+
+  if (errors === 'Invalid/Expired token') {
+    dispatch('LOGOUT')
   }
 
   return (
@@ -84,7 +91,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
               <div className="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="submit"
-                  className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-500 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-picton-blue hover:bg-picton-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-picton-blue sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   Save
                 </button>
