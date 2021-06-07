@@ -4,6 +4,7 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
   PencilIcon,
+  CheckIcon,
 } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { gql, useLazyQuery } from '@apollo/client'
@@ -38,20 +39,21 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
   console.log({ expand, subTask, task })
 
   return (
-    <div className="flex flex-col ml-10">
-      <div className="relative flex items-center justify-evenly group">
-        <div className="flex items-center justify-start w-20 text-left">
+    <div className="flex flex-col w-full ml-10">
+      <div className="flex items-center group">
+        <div className="flex items-center justify-end w-28">
           <DeleteTask taskId={task.id} refetch={refetch} />
-          <PencilIcon className="object-contain w-5 mx-1 opacity-0 group-hover:opacity-100" />
+          <PencilIcon className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100" />
+          <CheckIcon className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100" />
           {task.subTasks.length > 0 &&
             (expand ? (
               <ChevronDownIcon
-                className="object-contain w-5 mx-1"
+                className="object-contain w-5 mx-1 cursor-pointer"
                 onClick={() => setExpand((prevExpand) => !prevExpand)}
               />
             ) : (
               <ChevronRightIcon
-                className="object-contain w-5 mx-1"
+                className="object-contain w-5 mx-1 cursor-pointer"
                 onClick={() => setExpand((prevExpand) => !prevExpand)}
               />
             ))}
@@ -84,11 +86,5 @@ const GET_SUB_TASKS = gql`
         subTaskTitle
       }
     }
-  }
-`
-
-const DELETE_TASK = gql`
-  mutation deleteTask($taskId: ID!) {
-    deleteTask(taskId: $taskId)
   }
 `
