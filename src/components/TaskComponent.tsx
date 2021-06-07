@@ -9,6 +9,8 @@ import {
 import { Link } from 'react-router-dom'
 import { gql, useLazyQuery } from '@apollo/client'
 import { DeleteTask } from './DeleteTask'
+import classNames from 'classnames'
+import { TaskDone } from './TaskDone'
 
 interface TaskProps {
   task: Task
@@ -44,7 +46,7 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
         <div className="flex items-center justify-end w-28">
           <DeleteTask taskId={task.id} refetch={refetch} />
           <PencilIcon className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100" />
-          <CheckIcon className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100" />
+          <TaskDone taskId={task.id} refetch={refetch} isDone={task.isDone} />
           {task.subTasks.length > 0 &&
             (expand ? (
               <ChevronDownIcon
@@ -63,7 +65,13 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
             •
           </Link>
         </div>
-        <p className="mx-1 justify-items-end">{task.body}</p>
+        <p
+          className={classNames('mx-1 justify-items-end', {
+            'line-through': task.isDone,
+          })}
+        >
+          {task.body}
+        </p>
       </div>
       {expand &&
         subTask.length > 0 &&
@@ -81,9 +89,11 @@ const GET_SUB_TASKS = gql`
       body
       createdAt
       username
+      isDone
+      isRoot
       subTasks {
         subTaskId
-        subTaskTitle
+        # subTaskTitle
       }
     }
   }
