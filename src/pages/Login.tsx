@@ -57,7 +57,7 @@ const Login = () => {
           />
           <button
             type="submit"
-            className="w-full px-4 py-2 my-3 text-xs font-medium text-white uppercase border rounded-full bg-picton-blue border-picton-blue "
+            className="w-full px-4 py-2 my-3 text-xs font-medium text-white uppercase border rounded-full outline-none bg-picton-blue border-picton-blue focus:outline-none"
             // disabled={loading}
           >
             Login
