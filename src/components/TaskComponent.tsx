@@ -37,7 +37,7 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
   console.log({ expand, subTask, task })
 
   return (
-    <div className="flex flex-col flex-wrap w-full ml-2 md:ml-10">
+    <div className="flex flex-col flex-wrap w-full mb-2 ml-2 md:ml-10">
       <div className="flex items-center group">
         <div className="flex items-center justify-start w-auto md:justify-end md:w-28">
           <DeleteTask taskId={task.id} refetch={refetch} />
@@ -46,24 +46,24 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
           {task.subTasks.length > 0 &&
             (expand ? (
               <ChevronDownIcon
-                className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 cursor-pointer"
+                className="object-contain w-5 mx-1 cursor-pointer"
                 onClick={() => setExpand((prevExpand) => !prevExpand)}
               />
             ) : (
               <ChevronRightIcon
-                className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 cursor-pointer"
+                className="object-contain w-5 mx-1 cursor-pointer"
                 onClick={() => setExpand((prevExpand) => !prevExpand)}
               />
             ))}
         </div>
-        <div className="flex items-center justify-center w-3 h-3 bg-gray-300 rounded-full md:w-4 md:h-4 hover:bg-gray-400">
+        <div className="flex items-center justify-center w-4 h-4 bg-gray-300 rounded-full hover:bg-gray-400">
           <Link to={`/task/${task.id}`} className="text-black md:text-2xl">
             •
           </Link>
         </div>
         <p
           className={classNames(
-            'mx-1 md:justify-items-end justify-items-start md:text-base text-xs',
+            'mx-1 md:justify-items-end justify-items-start md:text-base text-sm',
             {
               'line-through': task.isDone,
             }
