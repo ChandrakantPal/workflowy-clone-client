@@ -42,9 +42,9 @@ const TaskPage = () => {
           data?.getTask?.subTasks.map((task: Task) => (
             <TaskComponent key={task.id} task={task} refetch={refetch} />
           ))}
-        <div className="ml-14 md:pl-2 md:ml-36">
+        <div className="pl-6 ml-16 md:pl-2 md:ml-36">
           <PlusIcon
-            className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 cursor-pointer"
+            className="object-contain w-5 mx-1 cursor-pointer"
             onClick={() => setOpen(true)}
           />
         </div>
