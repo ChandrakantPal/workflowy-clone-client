@@ -47,10 +47,10 @@ const TaskPage = () => {
     <div className="w-full h-screen mt-20">
       <div className="w-full px-4 md:px-0 md:mx-auto md:w-2/3">
         <p className="pl-8 text-xl font-bold text-left md:text-2xl md:pl-32">
-          {data?.getTask.task.body}
+          {data?.getTask?.task?.body}
         </p>
         {data?.getTask?.subTasks &&
-          data?.getTask?.subTasks.map((task: Task) => (
+          data?.getTask?.subTasks?.map((task: Task) => (
             <TaskComponent key={task.id} task={task} refetch={refetch} />
           ))}
         <div className="pl-6 ml-16 md:pl-2 md:ml-36">
