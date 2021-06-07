@@ -21,6 +21,7 @@ const TaskPage = () => {
     variables: {
       taskId: id,
     },
+    fetchPolicy: 'cache-and-network',
   })
   console.log({ error, data })
 
@@ -28,18 +29,20 @@ const TaskPage = () => {
   if (!authenticated) return <Redirect to="/login" />
   return (
     <div className="w-full h-screen mt-20">
-      <div className="flex flex-col items-start w-2/3 mx-auto">
-        <p className="text-2xl font-bold text-center">
+      <div className="w-full px-4 md:px-0 md:mx-auto md:w-2/3">
+        <p className="pl-8 text-xl font-bold text-left md:text-2xl md:pl-32">
           {data?.getTask.task.body}
         </p>
         {data?.getTask?.subTasks &&
           data?.getTask?.subTasks.map((task: Task) => (
-            <TaskComponent key={task.id} task={task} />
+            <TaskComponent key={task.id} task={task} refetch={refetch} />
           ))}
-        <PlusIcon
-          className="object-contain w-5"
-          onClick={() => setOpen(true)}
-        />
+        <div className="ml-14 md:pl-2 md:ml-36">
+          <PlusIcon
+            className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 cursor-pointer"
+            onClick={() => setOpen(true)}
+          />
+        </div>
       </div>
       {open && id !== '' && (
         <Modal close={() => setOpen(false)}>
