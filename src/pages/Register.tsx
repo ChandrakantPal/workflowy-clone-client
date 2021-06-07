@@ -82,7 +82,7 @@ const Register = () => {
           />
           <button
             type="submit"
-            className="py-2.5 px-6 my-3 text-sm font-medium text-white uppercase bg-picton-blue border border-picton-blue rounded-full "
+            className="py-2.5 px-6 my-3 text-sm font-medium text-white uppercase bg-picton-blue border border-picton-blue rounded-full outline-none focus:outline-none"
             // disabled={loading}
           >
             Sign up
