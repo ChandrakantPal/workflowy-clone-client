@@ -23,13 +23,13 @@ const Home = () => {
   if (!authenticated) return <Redirect to="/login" />
   return (
     <div className="w-full h-screen mt-20">
-      <div className="w-2/3 mx-auto">
+      <div className="w-full px-4 md:px-0 md:mx-auto md:w-2/3">
         {data?.getTasks?.map((task: Task) => (
           <TaskComponent key={task.id} task={task} refetch={refetch} />
         ))}
-        <div className="ml-32">
+        <div className="ml-16 md:ml-32">
           <PlusIcon
-            className="object-contain w-5 cursor-pointer"
+            className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 cursor-pointer"
             onClick={() => setOpen(true)}
           />
         </div>
