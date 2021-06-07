@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router'
 
 import ApolloProvider from './ApolloProvider'
 import { AuthProvider } from './context/Auth'
@@ -10,11 +10,15 @@ import TaskPage from './pages/TaskPage'
 
 import Navbar from './components/Navbar'
 
+import { createHashHistory } from 'history'
+
+const history = createHashHistory()
+
 function App() {
   return (
     <ApolloProvider>
       <AuthProvider>
-        <BrowserRouter>
+        <Router history={history}>
           <Navbar />
           <Switch>
             <Route path="/task/:id" component={TaskPage} />
@@ -22,7 +26,7 @@ function App() {
             <Route exact path="/signup" component={Register} />
             <Route exact path="/login" component={Login} />
           </Switch>
-        </BrowserRouter>
+        </Router>
       </AuthProvider>
     </ApolloProvider>
   )
