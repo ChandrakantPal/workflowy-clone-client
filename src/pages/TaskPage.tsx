@@ -25,7 +25,12 @@ const TaskPage = () => {
   })
   console.log({ error, data })
 
-  if (loading) return <p>Loading...</p>
+  if (loading)
+    return (
+      <p className="flex items-center justify-center w-screen h-screen">
+        Loading...
+      </p>
+    )
   if (!authenticated) return <Redirect to="/login" />
   return (
     <div className="w-full h-screen mt-20">
