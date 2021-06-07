@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
 import jwt_decode, { JwtPayload } from 'jwt-decode'
 import { User } from '../types'
 
@@ -44,6 +44,12 @@ const authReducer = (state: State, { type, payload }: Action) => {
         authenticated: true,
         user: payload,
       }
+    case 'AUTH_CHECK':
+      return {
+        ...state,
+        authenticated: payload.authenticated,
+        user: payload.user,
+      }
     case 'LOGOUT':
       localStorage.removeItem('token')
       return {
@@ -61,6 +67,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const dispatch = (type: string, payload?: any) =>
     defaultDispatch({ type, payload })
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      const decodedToken = jwt_decode<JwtPayload>(token)
+      const expiresAt = new Date(decodedToken.exp * 1000)
+
+      if (new Date() > expiresAt) {
+        localStorage.removeItem('token')
+      } else {
+        dispatch('AUTH_CHECK', { authenticated: true, user: decodedToken })
+      }
+    } else dispatch('LOGOUT')
+  }, [])
 
   return (
     <DispatchContext.Provider value={dispatch}>
