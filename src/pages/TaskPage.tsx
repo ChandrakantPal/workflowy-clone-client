@@ -17,6 +17,8 @@ const TaskPage = () => {
   const { authenticated } = useAuthState()
 
   const { id } = useParams<ParamTypes>()
+  console.log({ id })
+
   const { data, loading, error, refetch } = useQuery(GET_TASK, {
     variables: {
       taskId: id,
@@ -31,6 +33,11 @@ const TaskPage = () => {
         Loading...
       </p>
     )
+
+  if (error) {
+    return `Error ${error}`
+  }
+
   if (!authenticated) return <Redirect to="/login" />
   return (
     <div className="w-full h-screen mt-20">
