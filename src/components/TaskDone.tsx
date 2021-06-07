@@ -25,12 +25,12 @@ export const TaskDone: FC<TaskDoneProp> = ({ taskId, refetch, isDone }) => {
     <>
       {isDone ? (
         <XIcon
-          className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100"
+          className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 opacity-0 cursor-pointer group-hover:opacity-100"
           onClick={taskdone}
         />
       ) : (
         <CheckIcon
-          className="object-contain w-5 mx-1 opacity-0 cursor-pointer group-hover:opacity-100"
+          className="object-contain w-3 mx-0.5 md:w-5 md:mx-1 opacity-0 cursor-pointer group-hover:opacity-100"
           onClick={taskdone}
         />
       )}
