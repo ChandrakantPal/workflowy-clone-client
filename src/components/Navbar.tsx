@@ -17,7 +17,7 @@ const Navbar = () => {
         {authenticated ? (
           <button
             onClick={() => dispatch('LOGOUT')}
-            className="px-2 py-1 bg-gray-200 rounded-full "
+            className="px-2 py-1 bg-gray-200 rounded-full outline-none focus:outline-none"
           >
             Logout
           </button>
