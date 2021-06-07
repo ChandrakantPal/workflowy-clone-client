@@ -56,7 +56,6 @@ const GET_TASKS = gql`
       isRoot
       subTasks {
         subTaskId
-        # subTaskTitle
       }
     }
   }
