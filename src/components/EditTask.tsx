@@ -38,7 +38,7 @@ export const EditTask: FC<EditTaskProp> = ({ taskId, body, refetch }) => {
   return (
     <>
       <PencilIcon
-        className="object-contain w-3 md:w-5 md:mx-1 mx-0.5 opacity-0 cursor-pointer group-hover:opacity-100"
+        className="object-contain w-5 mx-1 opacity-50 cursor-pointer md:opacity-0 group-hover:opacity-100"
         onClick={() => setOpen(true)}
       />
       {open && (
