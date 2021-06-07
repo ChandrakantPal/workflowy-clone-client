@@ -35,7 +35,11 @@ const TaskPage = () => {
     )
 
   if (error) {
-    return `Error ${error}`
+    return (
+      <p className="flex items-center justify-center w-screen h-screen">
+        `Error ${error}`
+      </p>
+    )
   }
 
   if (!authenticated) return <Redirect to="/login" />
