@@ -14,20 +14,22 @@ const Home = () => {
   const [open, setOpen] = useState(false)
   const { authenticated } = useAuthState()
 
-  const { data, loading, error, refetch } = useQuery(GET_TASKS)
+  const { data, loading, error, refetch } = useQuery(GET_TASKS, {
+    fetchPolicy: 'cache-and-network',
+  })
   console.log(error)
 
   if (loading) return <p>Loading...</p>
   if (!authenticated) return <Redirect to="/login" />
   return (
     <div className="w-full h-screen mt-20">
-      <div className="flex flex-col items-start w-2/3 mx-auto">
+      <div className="w-2/3 mx-auto">
         {data?.getTasks?.map((task: Task) => (
           <TaskComponent key={task.id} task={task} refetch={refetch} />
         ))}
-        <div className="pl-1 ml-24">
+        <div className="ml-32">
           <PlusIcon
-            className="object-contain w-5"
+            className="object-contain w-5 cursor-pointer"
             onClick={() => setOpen(true)}
           />
         </div>
