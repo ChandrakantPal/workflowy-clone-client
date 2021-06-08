@@ -8,7 +8,7 @@ interface DeleteTaskProp {
   refetch?: () => void
 }
 
-export const DeleteTask: FC<DeleteTaskProp> = ({ taskId, refetch }) => {
+const DeleteTask: FC<DeleteTaskProp> = ({ taskId, refetch }) => {
   const [open, setOpen] = useState(false)
 
   const [DeleteTask] = useMutation(DELETE_TASK, {
@@ -71,6 +71,8 @@ export const DeleteTask: FC<DeleteTaskProp> = ({ taskId, refetch }) => {
     </>
   )
 }
+
+export default DeleteTask
 
 const DELETE_TASK = gql`
   mutation deleteTask($taskId: ID!) {
