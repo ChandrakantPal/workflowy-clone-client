@@ -8,7 +8,7 @@ interface TaskDoneProp {
   isDone: boolean
 }
 
-export const TaskDone: FC<TaskDoneProp> = ({ taskId, refetch, isDone }) => {
+const TaskDone: FC<TaskDoneProp> = ({ taskId, refetch, isDone }) => {
   const [MarkDone] = useMutation(TASK_DONE, {
     onCompleted: (data) => {
       console.log('done', { data })
@@ -37,6 +37,8 @@ export const TaskDone: FC<TaskDoneProp> = ({ taskId, refetch, isDone }) => {
     </>
   )
 }
+
+export default TaskDone
 
 const TASK_DONE = gql`
   mutation markDone($taskId: ID!) {
