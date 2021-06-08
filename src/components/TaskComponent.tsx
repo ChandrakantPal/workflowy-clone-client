@@ -18,7 +18,7 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
   const [subTask, setSubTask] = useState<Task[]>([])
   const [GetSubTasks] = useLazyQuery(GET_SUB_TASKS, {
     onCompleted: (data) => {
-      console.log(data)
+      // console.log(data)
       setSubTask(data.getSubTasks)
     },
     fetchPolicy: 'cache-and-network',
@@ -34,12 +34,12 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
     }
   }, [GetSubTasks, expand, task.subTasks])
 
-  console.log({ expand, subTask, task })
+  // console.log({ expand, subTask, task })
 
   return (
     <div className="flex flex-col mb-2 ml-8 md:w-full md:ml-12">
-      <div className="flex flex-wrap-reverse items-center group">
-        <div className="flex items-center justify-start w-auto md:justify-end md:w-28">
+      <div className="flex flex-wrap items-center group">
+        <div className="flex items-center w-auto justify-evenly md:justify-end md:w-28">
           <DeleteTask taskId={task.id} refetch={refetch} />
           <EditTask taskId={task.id} refetch={refetch} body={task.body} />
           <TaskDone taskId={task.id} refetch={refetch} isDone={task.isDone} />
