@@ -11,7 +11,7 @@ interface TaskDoneProp {
 const TaskDone: FC<TaskDoneProp> = ({ taskId, refetch, isDone }) => {
   const [MarkDone] = useMutation(TASK_DONE, {
     onCompleted: (data) => {
-      console.log('done', { data })
+      // console.log('done', { data })
       refetch()
     },
   })
