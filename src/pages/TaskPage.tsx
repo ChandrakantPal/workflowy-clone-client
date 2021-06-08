@@ -17,7 +17,7 @@ const TaskPage = () => {
   const { authenticated } = useAuthState()
 
   const { id } = useParams<ParamTypes>()
-  console.log({ id })
+  // console.log({ id })
 
   const { data, loading, error, refetch } = useQuery(GET_TASK, {
     variables: {
@@ -25,7 +25,7 @@ const TaskPage = () => {
     },
     fetchPolicy: 'cache-and-network',
   })
-  console.log({ error, data })
+  // console.log({ error, data })
 
   if (loading)
     return (
