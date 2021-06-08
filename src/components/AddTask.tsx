@@ -17,7 +17,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
 
   const [createTask] = useMutation(CREATE_TASK, {
     update: (_, data) => {
-      console.log(data)
+      // console.log(data)
       refetch()
       setNewTask('')
       setOpen(false)
@@ -30,7 +30,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
 
   const [createSubTask] = useMutation(CREATE_SUBTASK, {
     update: (_, data) => {
-      console.log(data)
+      // console.log(data)
       refetch()
       setNewTask('')
       setOpen(false)
@@ -43,7 +43,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
 
   const createTaskSubmitHandler = (event: FormEvent) => {
     event.preventDefault()
-    console.log()
+    // console.log()
 
     if (type === 'task') {
       createTask({
