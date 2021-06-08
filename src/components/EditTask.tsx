@@ -10,7 +10,7 @@ interface EditTaskProp {
   refetch: () => void
 }
 
-export const EditTask: FC<EditTaskProp> = ({ taskId, body, refetch }) => {
+const EditTask: FC<EditTaskProp> = ({ taskId, body, refetch }) => {
   const [editBody, setEditBody] = useState(() => body)
   const [open, setOpen] = useState(false)
   const [errors, setErrors] = useState('')
@@ -90,6 +90,8 @@ export const EditTask: FC<EditTaskProp> = ({ taskId, body, refetch }) => {
     </>
   )
 }
+
+export default EditTask
 
 const EDIT_TASK = gql`
   mutation editTask($taskId: ID!, $body: String!) {
