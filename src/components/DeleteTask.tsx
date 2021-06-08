@@ -13,7 +13,7 @@ const DeleteTask: FC<DeleteTaskProp> = ({ taskId, refetch }) => {
 
   const [DeleteTask] = useMutation(DELETE_TASK, {
     onCompleted: (data) => {
-      console.log('delete', { data })
+      // console.log('delete', { data })
       refetch()
       setOpen(false)
     },
