@@ -17,7 +17,7 @@ const EditTask: FC<EditTaskProp> = ({ taskId, body, refetch }) => {
 
   const [TaskEdit] = useMutation(EDIT_TASK, {
     update: (_, data) => {
-      console.log(data)
+      // console.log(data)
       refetch()
       setEditBody('')
       setOpen(false)
