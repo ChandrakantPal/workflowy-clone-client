@@ -3,10 +3,10 @@ import { Task } from '../types'
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { gql, useLazyQuery } from '@apollo/client'
-import { DeleteTask } from './DeleteTask'
+import DeleteTask from './DeleteTask'
 import classNames from 'classnames'
-import { TaskDone } from './TaskDone'
-import { EditTask } from './EditTask'
+import TaskDone from './TaskDone'
+import EditTask from './EditTask'
 
 interface TaskProps {
   task: Task
@@ -37,8 +37,8 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
   console.log({ expand, subTask, task })
 
   return (
-    <div className="flex flex-col flex-wrap w-full mb-2 ml-2 md:ml-10">
-      <div className="flex items-center group">
+    <div className="flex flex-col mb-2 ml-8 md:w-full md:ml-12">
+      <div className="flex flex-wrap-reverse items-center group">
         <div className="flex items-center justify-start w-auto md:justify-end md:w-28">
           <DeleteTask taskId={task.id} refetch={refetch} />
           <EditTask taskId={task.id} refetch={refetch} body={task.body} />
@@ -63,7 +63,7 @@ export const TaskComponent: FC<TaskProps> = ({ task, refetch }) => {
         </div>
         <p
           className={classNames(
-            'mx-1 md:justify-items-end justify-items-start md:text-base text-sm',
+            'mx-1 md:justify-items-end justify-items-start md:text-base text-sm flex-1',
             {
               'line-through': task.isDone,
             }
