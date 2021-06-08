@@ -32,7 +32,7 @@ const Home = () => {
         {data?.getTasks?.map((task: Task) => (
           <TaskComponent key={task.id} task={task} refetch={refetch} />
         ))}
-        <div className="pl-4 ml-16 md:ml-32">
+        <div className="pl-6 ml-16 md:ml-32">
           <PlusIcon
             className="object-contain w-5 mx-1 cursor-pointer"
             onClick={() => setOpen(true)}
