@@ -1,4 +1,4 @@
-import { Router, Route, Switch } from 'react-router'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import ApolloProvider from './ApolloProvider'
 import { AuthProvider } from './context/Auth'
@@ -10,15 +10,15 @@ import TaskPage from './pages/TaskPage'
 
 import Navbar from './components/Navbar'
 
-import { createHashHistory } from 'history'
+// import { createHashHistory } from 'history'
 
-const history = createHashHistory()
+// const history = createHashHistory()
 
 function App() {
   return (
     <ApolloProvider>
       <AuthProvider>
-        <Router history={history}>
+        <Router>
           <Navbar />
           <Switch>
             <Route path="/task/:id" component={TaskPage} />
