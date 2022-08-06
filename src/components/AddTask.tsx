@@ -75,7 +75,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
         <div className="justify-center sm:flex sm:items-start">
           <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
             <h3
-              className="text-lg font-medium leading-6 text-gray-900"
+              className="mb-2 text-lg font-medium leading-6 text-gray-900"
               id="modal-headline"
             >
               {type === 'task' ? 'Create Task' : 'Create Subtask'}
@@ -88,7 +88,7 @@ const AddTask: FC<AddTaskProp> = ({ setOpen, refetch, taskId, type }) => {
                 setValue={setNewTask}
                 error={errors}
               />
-              <div className="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="px-4 py-3 mt-2 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="submit"
                   className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-picton-blue hover:bg-picton-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-picton-blue sm:ml-3 sm:w-auto sm:text-sm"

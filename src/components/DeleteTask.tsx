@@ -43,7 +43,7 @@ const DeleteTask: FC<DeleteTaskProp> = ({ taskId, refetch }) => {
               <div className="justify-center sm:flex sm:items-start">
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <h3
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="mb-2 text-lg font-medium leading-6 text-gray-900"
                     id="modal-headline"
                   >
                     Are you sure you want to delete this task?
